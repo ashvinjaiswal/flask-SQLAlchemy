@@ -1,20 +1,34 @@
-{% extends "admin/master.html" %} {% block pageTitle %}  List of Categories <a class="btn btn-primary pull-right" href="/" role="button">Back</a> {% endblock %} {% block conent %}
-<div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for category in categories %}
-            <tr>
-                <td>{{category.id}}</td>
-                <td>{{category.name.upper()}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+{% extends "admin/master.html" %} {% block pageTitle %} List of Categories <a class="btn btn-primary pull-right" href="/" role="button">Back</a> {% endblock %} {% block conent %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Manage Category</h3>
+        <a class="btn btn-primary pull-right" href="/addCategory" role="button">Add</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Category</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                    <tr>
+                        <td>{{category.id}}</td>
+                        <td>{{category.name.upper()}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="editCategory/{{category.id}}" role="button"><i class="icon-trash"></i> Edit</a> &nbsp;
+                            <a class="btn btn-primary" href="deleteCategory/{{category.id}}" role="button"><i class="icon-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

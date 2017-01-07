@@ -1,0 +1,48 @@
+{% extends "admin/master.html" %} {% block pageTitle %} List of Categories <a class="btn btn-primary pull-right" href="/" role="button">Back</a> {% endblock %} {% block conent %}
+<!-- <div class="jumbotron"> -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit Recipes</h3>
+    </div>
+    <div class="panel-body">
+        <form method="post" action="/updateRecipes" enctype="multipart/form-data">
+            <input type="hidden" name="inputId" id="inputId" class="form-control" value="{{recipes.id}}">
+            <div class="form-group">
+                <label for="inputName">Name</label>
+                <input type="text" value="{{recipes.name}}" class="form-control" id="inputName" name="inputName" placeholder="Recipe Name">
+            </div>
+            <div class="form-group">
+                <label for="inputDescription">Description</label>
+                <textarea id="inputDescription" name="inputDescription" class="form-control" rows="3">{{recipes.description}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputPrice">Price</label>
+                <input type="text" value="{{recipes.price}}" class="form-control" id="inputPrice" name="inputPrice" placeholder="Price">
+            </div>
+            <div class="form-group">
+                <label for="inputCategory">Category</label>
+                <select name="inputCategory" id="inputCategory" class="form-control" required="required">
+                    {% for category in categories %}
+                    <option value="{{category.id}}" {% if recipes.recipes.id==category.id %} selected {% endif %}>{{category.name.capitalize()}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="checkbox">
+                {% if recipes.image %}
+                <img width="100px" src="/static/uploads/{{recipes.image}}" class="img-responsive" alt="Image">
+                <label>
+                    <input type="checkbox" value="{{recipes.image}}" name="deleteCheck"> Delete
+                </label>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="inputImage">Recipes images</label>
+                <input type="file" id="inputImage" name="inputImage">
+                <p class="help-block">Select the recipes images</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<!-- </div> -->
+{% endblock %}

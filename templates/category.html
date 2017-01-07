@@ -19,7 +19,7 @@
                     {% for category in categories %}
                     <tr>
                         <td>{{category.id}}</td>
-                        <td>{{category.name.upper()}}</td>
+                        <td>{{category.name.capitalize()}}</td>
                         <td>
                             <a class="btn btn-primary" href="editCategory/{{category.id}}" role="button"><i class="icon-trash"></i> Edit</a> &nbsp;
                             <a class="btn btn-primary" href="deleteCategory/{{category.id}}" role="button"><i class="icon-trash"></i> Delete</a>

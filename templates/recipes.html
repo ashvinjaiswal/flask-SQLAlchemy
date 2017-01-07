@@ -1,0 +1,45 @@
+{% extends "admin/master.html" %} {% block pageTitle %} List of Categories <a class="btn btn-primary pull-right" href="/" role="button">Back</a> {% endblock %} {% block conent %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Manage Recipes</h3>
+        <a class="btn btn-primary pull-right" href="/addRecipes" role="button">Add</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in recipes %}
+                    <tr>
+                        <td>{{r.id}}</td>
+                        <td>{{r.name.capitalize()}}</td>
+                        <td>{{r.recipes.name.capitalize()}}</td>
+
+                        <td>
+                            {% if r.image %} 
+                            <img width="100px" src="/static/uploads/{{r.image}}" class="img-responsive" alt="Image">
+                            {% endif %}
+                            </td>
+                        <td>{{r.price}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="editRecipes/{{r.id}}" role="button"><i class="icon-trash"></i> Edit</a> &nbsp;
+                            <a class="btn btn-primary" href="deleteRecipes/{{r.id}}" role="button"><i class="icon-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
